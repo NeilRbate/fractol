@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/12 15:21:29 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:42:53 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->x2 = 0.6;
 	fractal->y1 = -1.2;
 	fractal->y2 = 1.2;
-	fractal->zoom = 200;
+	fractal->zoom = 380;
 	fractal->imax = 1000;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
@@ -56,13 +56,15 @@ void	print_mandelbrot(t_vars *vars, t_data *data, t_fractal *fractal)
 			while (((fractal->z_r * fractal->z_r) + (fractal->z_i * fractal->z_i)) < 4 && fractal->i < fractal->imax)
 				sum(fractal);
 			if (fractal->i == fractal->imax)
-			{
-				pixel_put(data, i, j, 0x0000FF00);
-				mlx_put_image_to_window(vars->mlx, vars->win, data->img, 0, 0);
-			}
+				pixel_put(data, i, j, 0x00330066);
+			else if (fractal->i > fractal->imax / 2)
+				pixel_put(data, i, j, 0x000000FF);
+			else
+				pixel_put(data, i, j, 0x00660066);
 			j++;
 		}
 		i++;
 		j = 0;
 	}
+				mlx_put_image_to_window(vars->mlx, vars->win, data->img, 0, 0);
 }
