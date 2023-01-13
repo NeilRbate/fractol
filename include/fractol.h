@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/12 15:07:20 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:31:41 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	s_vars
 }				t_vars;
 
 void	pixel_put(t_data *data, int x, int y, int color);
-void	print_mandelbrot(t_vars *vars, t_data *data, t_fractal *fractal);
+void	print_mandelbrot(t_data *data, t_fractal *fractal);
 void	init_mandelbrot(t_data *data, t_fractal *fractal);
 int		init(t_vars *vars, t_data *data);
 

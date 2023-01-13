@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:30:55 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/12 14:25:38 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:38:22 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ int	mlxclose(int keycode, t_vars *vars)
 	return (0);
 }
 
+int	mlxmouse(int keycode, int x, int y, t_data *data)
+{
+	(void)data;
+	(void)x;
+	(void)y;
+	if (keycode == 5)
+		printf("%i\n", keycode);
+	else
+		printf("%i\n", keycode);
+	return (0);
+}
+
 int	main(void)
 {
 	t_vars		*vars;
@@ -38,8 +50,10 @@ int	main(void)
 	init_mandelbrot(data, fractal);
 	if (init(vars, data) != 0)
 		return (1);
-	print_mandelbrot(vars, data, fractal);
+	print_mandelbrot(data, fractal);
 	mlx_key_hook(vars->win, mlxclose, vars);
+	mlx_mouse_hook(vars->win, mlxmouse, vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, data->img, 0, 0);
 	mlx_loop(vars->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/12 15:42:53 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:31:31 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	sum(t_fractal *fractal)
 	fractal->i += 1;
 	
 }
-void	print_mandelbrot(t_vars *vars, t_data *data, t_fractal *fractal)
+void	print_mandelbrot(t_data *data, t_fractal *fractal)
 {
 	int	i;
 	int	j;
@@ -66,5 +66,4 @@ void	print_mandelbrot(t_vars *vars, t_data *data, t_fractal *fractal)
 		i++;
 		j = 0;
 	}
-				mlx_put_image_to_window(vars->mlx, vars->win, data->img, 0, 0);
 }
