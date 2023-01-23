@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:21:34 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/13 12:41:13 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:37:39 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	init(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, data->x, data->y, "Fractol");
-	data->img = mlx_new_image(data->mlx, data->x, data->y);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	return (0);
 }
 

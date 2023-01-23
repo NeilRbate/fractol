@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/13 13:41:19 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:07:36 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->x2 = 0.6;
 	fractal->y1 = -1.2;
 	fractal->y2 = 1.2;
-	fractal->zoom = 380;
-	fractal->imax = 50;
+	fractal->zoom = 300;
+	fractal->imax = 40;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
 	fractal->zoom_x = data->x / (fractal->x2 - fractal->x1);
@@ -43,6 +43,8 @@ void	print_mandelbrot(t_data *data, t_fractal *fractal)
 
 	i = 0;
 	j = 0;
+	data->img = mlx_new_image(data->mlx, data->x, data->y);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	while (i < data->x)
 	{
 		while (j < data->y)
@@ -52,7 +54,6 @@ void	print_mandelbrot(t_data *data, t_fractal *fractal)
 			fractal->z_r = 0;
 			fractal->z_i = 0;
 			fractal->i = 0;
-			sum(fractal);
 			while (((fractal->z_r * fractal->z_r) + (fractal->z_i * fractal->z_i)) < 4 && fractal->i < fractal->imax)
 				sum(fractal);
 			if (fractal->i == fractal->imax)
