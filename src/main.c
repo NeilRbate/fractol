@@ -6,12 +6,11 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:30:55 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:20:55 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:25:48 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-#include <stdio.h>
 
 void	sumdata(t_data *data)
 {

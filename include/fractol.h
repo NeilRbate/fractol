@@ -6,15 +6,12 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/13 12:47:37 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:26:04 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-
-# define WIDTH 700
-# define HEIGHT 700
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
