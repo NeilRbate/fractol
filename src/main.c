@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:30:55 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:07:55 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:20:55 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,21 @@ int	mlxkey(int keycode, t_data *data)
 	else if (keycode == 126)
 	{
 		data->fractal->zoom *= 1.1;
-		//data->fractal->imax *= 1.1;
+		data->fractal->imax *= 1.1;
 		data->fractal->x1 /= 1.1;
-		data->fractal->x2 /= 1.1;
+		data->fractal->x2 *= 1.1;
 		data->fractal->y1 /= 1.1;
-		data->fractal->y2 /= 1.1;
+		data->fractal->y2 *= 1.1;
 		sumdata(data);
 	}
 	else if (keycode == 125)
 	{	
 		data->fractal->zoom /= 1.1;
-		//data->fractal->imax /= 1.1;
+		data->fractal->imax /= 1.1;
 		data->fractal->x1 *= 1.1;
-		data->fractal->x2 *= 1.1;
+		data->fractal->x2 /= 1.1;
 		data->fractal->y1 *= 1.1;
-		data->fractal->y2 *= 1.1;
+		data->fractal->y2 /= 1.1;
 		sumdata(data);
 	}
 	return (0);

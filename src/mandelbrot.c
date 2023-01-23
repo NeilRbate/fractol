@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:07:36 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:13:24 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	print_mandelbrot(t_data *data, t_fractal *fractal)
 
 	i = 0;
 	j = 0;
+	mlx_clear_window(data->mlx, data->win);
 	data->img = mlx_new_image(data->mlx, data->x, data->y);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
 	while (i < data->x)
