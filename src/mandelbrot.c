@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 11:30:41 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:35:43 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,30 @@ void	ft_sumdata(t_data *data)
 	ft_print_mandelbrot(data, data->fractal);
 }
 
-void	ft_summousedata(t_data *data, int x, int y)
+void	ft_summousedata(t_data *data)
 {
-	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
-	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
-	data->fractal->zoom_x = x;
-	data->fractal->zoom_y = y;
+//	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
+//	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
+	data->fractal->zoom_x = data->x
+		/ (data->fractal->x2 - data->fractal->x1);
+	data->fractal->zoom_y = data->y
+		/ (data->fractal->y2 - data->fractal->y1);
 	mlx_destroy_image(data->mlx, data->img);
 	ft_print_mandelbrot(data, data->fractal);
 }
 
 void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 {
-	fractal->x1 = -2.1;
-	fractal->x2 = 0.6;
-	fractal->y1 = -1.2;
-	fractal->y2 = 1.2;
+	fractal->x1_max = -2.1;
+	fractal->x2_max = 0.6;
+	fractal->y1_max = -1.2;
+	fractal->y2_max = 1.2;
+	fractal->x1 = fractal->x1_max;;
+	fractal->x2 = fractal->x2_max;
+	fractal->y1 = fractal->y1_max;
+	fractal->y2 = fractal->y2_max;
 	fractal->zoom = 300;
-	fractal->imax = 40;
+	fractal->imax = 20;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
 	fractal->zoom_x = data->x / (fractal->x2 - fractal->x1);

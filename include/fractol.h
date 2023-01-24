@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 11:24:54 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:36:01 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,23 @@
 
 typedef struct	s_fractal
 {
-	double	x1;
-	double	x2;
-	double	y1;
-	double	y2;
-	double	zoom_x;
-	double	zoom_y;
-	double	c_r;
-	double	c_i;
-	double	z_r;
-	double	z_i;
-	int		i;
-	int		zoom;
-	int		imax;
+	long double	x1;
+	long double	x2;
+	long double	y1;
+	long double	y2;
+	long double	x1_max;
+	long double	x2_max;
+	long double	y1_max;
+	long double	y2_max;
+	long double	zoom_x;
+	long double	zoom_y;
+	long double	c_r;
+	long double	c_i;
+	long double	z_r;
+	long double	z_i;
+	long double	i;
+	long double zoom;
+	int			 imax;
 }				t_fractal;
 
 typedef struct	s_data
@@ -57,7 +61,7 @@ void	ft_zoom(t_data *data);
 void	ft_unzoom(t_data *data);
 void	ft_clear(t_data *data);
 void	ft_color(t_data *data, int i, int j);
-void	ft_summousedata(t_data *data, int x, int y);
+void	ft_summousedata(t_data *data);
 void	ft_mousezoom(t_data *data, int i, int j);
 void	ft_mouseunzoom(t_data *data, int i, int j);
 int		ft_mlxkey(int keycode, t_data *data);
