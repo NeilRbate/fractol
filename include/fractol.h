@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 14:36:01 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:28:54 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ void	ft_zoom(t_data *data);
 void	ft_unzoom(t_data *data);
 void	ft_clear(t_data *data);
 void	ft_color(t_data *data, int i, int j);
-void	ft_summousedata(t_data *data);
+void	ft_summousedata(t_data *data, int x, int y);
 void	ft_mousezoom(t_data *data, int i, int j);
 void	ft_mouseunzoom(t_data *data, int i, int j);
+void	ft_print_julia(t_data *data, t_fractal *fractal);
 int		ft_mlxkey(int keycode, t_data *data);
 int		ft_mlxmouse(int keycode, int x, int y, t_data *data);
 int		init(t_data *data);

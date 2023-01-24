@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:30:55 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 13:09:23 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:29:43 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_strcmp(argv[1], "mandelbrot") == 0)
 		ft_print_mandelbrot(data, fractal);
+	if (ft_strcmp(argv[1], "julia") == 0)
+		ft_print_julia(data, fractal);
 	mlx_key_hook(data->win, ft_mlxkey, data);
 	mlx_mouse_hook(data->win, ft_mlxmouse, data);
 	mlx_loop(data->mlx);

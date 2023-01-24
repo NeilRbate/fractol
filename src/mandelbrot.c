@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 14:35:43 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:30:39 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ void	ft_sumdata(t_data *data)
 	ft_print_mandelbrot(data, data->fractal);
 }
 
-void	ft_summousedata(t_data *data)
+void	ft_summousedata(t_data *data, int x, int y)
 {
-//	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
-//	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
+	x = 5;
+	y = 5;
+	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
+	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
 	data->fractal->zoom_x = data->x
 		/ (data->fractal->x2 - data->fractal->x1);
 	data->fractal->zoom_y = data->y
@@ -42,7 +44,7 @@ void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->x2_max = 0.6;
 	fractal->y1_max = -1.2;
 	fractal->y2_max = 1.2;
-	fractal->x1 = fractal->x1_max;;
+	fractal->x1 = fractal->x1_max;
 	fractal->x2 = fractal->x2_max;
 	fractal->y1 = fractal->y1_max;
 	fractal->y2 = fractal->y2_max;
@@ -52,17 +54,6 @@ void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
 	fractal->zoom_x = data->x / (fractal->x2 - fractal->x1);
 	fractal->zoom_y = data->y / (fractal->y2 - fractal->y1);
-}
-
-void	ft_sum(t_fractal *fractal)
-{
-	float	temp;
-
-	temp = fractal->z_r;
-	fractal->z_r = (fractal->z_r * fractal->z_r)
-		- (fractal->z_i * fractal->z_i) + fractal->c_r;
-	fractal->z_i = 2 * fractal->z_i * temp + fractal->c_i;
-	fractal->i += 1;
 }
 
 void	ft_fractal(t_fractal *fractal, int i, int j)
@@ -76,8 +67,9 @@ void	ft_fractal(t_fractal *fractal, int i, int j)
 
 void	ft_print_mandelbrot(t_data *data, t_fractal *fractal)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	double	temp;
 
 	i = 0;
 	j = 0;
@@ -89,7 +81,13 @@ void	ft_print_mandelbrot(t_data *data, t_fractal *fractal)
 			ft_fractal(fractal, i, j);
 			while (exp2(fractal->z_r) + exp2(fractal->z_i) < 4
 				&& fractal->i < fractal->imax)
-				ft_sum(fractal);
+			{
+				temp = fractal->z_r;
+				fractal->z_r = (fractal->z_r * fractal->z_r)
+					- (fractal->z_i * fractal->z_i) + fractal->c_r;
+				fractal->z_i = 2 * fractal->z_i * temp + fractal->c_i;
+				fractal->i += 1;
+			}
 			ft_color(data, i, j);
 			j++;
 		}
