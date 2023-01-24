@@ -6,13 +6,35 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/23 17:13:24 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 11:30:41 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
-void	init_mandelbrot(t_data *data, t_fractal *fractal)
+void	ft_sumdata(t_data *data)
+{
+	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
+	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
+	data->fractal->zoom_x = data->x
+		/ (data->fractal->x2 - data->fractal->x1);
+	data->fractal->zoom_y = data->y
+		/ (data->fractal->y2 - data->fractal->y1);
+	mlx_destroy_image(data->mlx, data->img);
+	ft_print_mandelbrot(data, data->fractal);
+}
+
+void	ft_summousedata(t_data *data, int x, int y)
+{
+	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
+	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
+	data->fractal->zoom_x = x;
+	data->fractal->zoom_y = y;
+	mlx_destroy_image(data->mlx, data->img);
+	ft_print_mandelbrot(data, data->fractal);
+}
+
+void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 {
 	fractal->x1 = -2.1;
 	fractal->x2 = 0.6;
@@ -26,45 +48,43 @@ void	init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->zoom_y = data->y / (fractal->y2 - fractal->y1);
 }
 
-void	sum(t_fractal *fractal)
+void	ft_sum(t_fractal *fractal)
 {
 	float	temp;
 
 	temp = fractal->z_r;
-	fractal->z_r = (fractal->z_r * fractal->z_r) - (fractal->z_i * fractal->z_i) + fractal->c_r;
+	fractal->z_r = (fractal->z_r * fractal->z_r)
+		- (fractal->z_i * fractal->z_i) + fractal->c_r;
 	fractal->z_i = 2 * fractal->z_i * temp + fractal->c_i;
 	fractal->i += 1;
-	
 }
-void	print_mandelbrot(t_data *data, t_fractal *fractal)
+
+void	ft_fractal(t_fractal *fractal, int i, int j)
+{
+	fractal->c_r = i / fractal->zoom_x + fractal->x1;
+	fractal->c_i = j / fractal->zoom_y + fractal->y1;
+	fractal->z_r = 0;
+	fractal->z_i = 0;
+	fractal->i = 0;
+}
+
+void	ft_print_mandelbrot(t_data *data, t_fractal *fractal)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	mlx_clear_window(data->mlx, data->win);
-	data->img = mlx_new_image(data->mlx, data->x, data->y);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length, &data->endian);
+	ft_clear(data);
 	while (i < data->x)
 	{
 		while (j < data->y)
 		{
-			fractal->c_r = i / fractal->zoom_x + fractal->x1;
-			fractal->c_i = j / fractal->zoom_y + fractal->y1;
-			fractal->z_r = 0;
-			fractal->z_i = 0;
-			fractal->i = 0;
-			while (((fractal->z_r * fractal->z_r) + (fractal->z_i * fractal->z_i)) < 4 && fractal->i < fractal->imax)
-				sum(fractal);
-			if (fractal->i == fractal->imax)
-				pixel_put(data, i, j, 0x00330066);
-			else if (fractal->i > fractal->imax / 5)
-				pixel_put(data, i, j, 0x003300FF);
-			else if (fractal->i > fractal->imax / 2)
-				pixel_put(data, i, j, 0x000000FF);
-			else
-				pixel_put(data, i, j, 0x00000000);
+			ft_fractal(fractal, i, j);
+			while (exp2(fractal->z_r) + exp2(fractal->z_i) < 4
+				&& fractal->i < fractal->imax)
+				ft_sum(fractal);
+			ft_color(data, i, j);
 			j++;
 		}
 		i++;
