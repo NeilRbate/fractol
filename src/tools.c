@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 10:21:34 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 14:00:02 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 07:27:43 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ void	ft_color(t_data *data, int i, int j)
 	if (data->fractal->i == data->fractal->imax)
 		pixel_put(data, i, j, 0x00330044);
 	else
-		pixel_put(data, i, j, data->fractal->i * 650/data->fractal->imax);
+		pixel_put(data, i, j, data->fractal->i * 1000/data->fractal->imax);
 }
