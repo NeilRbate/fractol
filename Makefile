@@ -6,7 +6,7 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 13:29:23 by jbarbate          #+#    #+#              #
-#    Updated: 2023/01/25 14:54:18 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/01/25 15:02:52 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,8 @@ ${NAME}: ${OBJS}
 	@echo "<| Compiling libft   |>"
 	@make -C libft all
 	@echo "-----------------------"
-	@echo "<| Compiling MLX     |>"
-	@echo "-----------------------"
 	@echo "<| Compiling project |>"
-	@${GCC} -g ${CFLAGS} -lmlx -framework OpenGl -framework AppKit -o ${NAME} ${LIBFT} ${OBJS}
+	@${GCC} ${CFLAGS} -lmlx -framework OpenGl -framework AppKit -o ${NAME} ${LIBFT} ${OBJS}
 	@echo "-----------------------"
 	@echo "<| Compiling success |>"
 
