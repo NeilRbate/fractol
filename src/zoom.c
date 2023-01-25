@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 09:57:33 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 16:23:07 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:07:21 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_zoom(t_data *data)
 void	ft_unzoom(t_data *data)
 {
 	data->fractal->zoom /= 1.1;
-	data->fractal->imax /= 1.1;
+	if (data->fractal->imax > 10)
+		data->fractal->imax /= 1.1;
 	data->fractal->x1 *= 1.1;
 	data->fractal->x2 /= 1.1;
 	data->fractal->y1 *= 1.1;
@@ -40,13 +41,17 @@ void	ft_mousezoom(t_data *data, int i, int j)
 	long double	y;
 
 	data->fractal->zoom *= 1.1;
-	if (data->fractal->imax > 1)
-		data->fractal->imax *= 1.1;
+	//if (data->fractal->imax > 1)
+	//	data->fractal->imax *= 1.1;
 	x = data->fractal->x1_max + (data->fractal->x2_max - data->fractal->x1_max)
-		* i / 810;
+		* i / data->coo->x;
 	y = data->fractal->y1_max + (data->fractal->y2_max - data->fractal->y1_max)
-		* j / 720;
+		* j / data->coo->y;
 	printf("x -> %Lf, y -> %Lf", x, y);
+	//data->fractal->x1_max = x + (data->fractal->x1_max - data->fractal->x2_max) / data->fractal->zoom;
+	//data->fractal->x2_max = x - (data->fractal->x1_max - data->fractal->x2_max) / data->fractal->zoom;
+	//data->fractal->y1_max = y + (data->fractal->y1_max - data->fractal->y2_max) / data->fractal->zoom;
+	//data->fractal->y2_max = y - (data->fractal->y1_max - data->fractal->y2_max) / data->fractal->zoom;
 	data->fractal->x1 = x - 1;
 	data->fractal->x2 = x + 1;
 	data->fractal->y1 = y - 1;
@@ -60,13 +65,17 @@ void	ft_mouseunzoom(t_data *data, int i, int j)
 	long double	y;
 
 	data->fractal->zoom /= 1.1;
-	if (data->fractal->imax > 10)
-		data->fractal->imax /= 1.05;
+	//if (data->fractal->imax > 10)
+	//	data->fractal->imax /= 1.05;
 	x = data->fractal->x1_max + (data->fractal->x2_max - data->fractal->x1_max)
-		* i / 810;
+		* i / data->x;
 	y = data->fractal->y1_max + (data->fractal->y2_max - data->fractal->y1_max)
-		* j / 720;
+		* j / data->y;
 	printf("x -> %Lf, y -> %Lf", x, y);
+	data->fractal->x1_max = x + (data->fractal->x1_max - data->fractal->x2_max) / data->fractal->zoom;
+	data->fractal->x2_max = x - (data->fractal->x1_max - data->fractal->x2_max) / data->fractal->zoom;
+	data->fractal->y1_max = y + (data->fractal->y1_max - data->fractal->y2_max) / data->fractal->zoom;
+	data->fractal->y2_max = y - (data->fractal->y1_max - data->fractal->y2_max) / data->fractal->zoom;
 	data->fractal->x1 = x - 1;
 	data->fractal->x2 = x + 1;
 	data->fractal->y1 = y - 1;

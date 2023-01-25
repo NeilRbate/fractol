@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 16:30:39 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:02:47 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 
 void	ft_sumdata(t_data *data)
 {
-	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
-	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
-	data->fractal->zoom_x = data->x
-		/ (data->fractal->x2 - data->fractal->x1);
-	data->fractal->zoom_y = data->y
-		/ (data->fractal->y2 - data->fractal->y1);
 	mlx_destroy_image(data->mlx, data->img);
 	ft_print_mandelbrot(data, data->fractal);
 }
 
 void	ft_summousedata(t_data *data, int x, int y)
 {
-	x = 5;
-	y = 5;
-	data->x = (data->fractal->x2 - data->fractal->x1) * data->fractal->zoom;
-	data->y = (data->fractal->y2 - data->fractal->y1) * data->fractal->zoom;
-	data->fractal->zoom_x = data->x
-		/ (data->fractal->x2 - data->fractal->x1);
-	data->fractal->zoom_y = data->y
-		/ (data->fractal->y2 - data->fractal->y1);
+	(void)x;
+	(void)y;
 	mlx_destroy_image(data->mlx, data->img);
 	ft_print_mandelbrot(data, data->fractal);
 }
@@ -52,14 +40,14 @@ void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->imax = 20;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
-	fractal->zoom_x = data->x / (fractal->x2 - fractal->x1);
-	fractal->zoom_y = data->y / (fractal->y2 - fractal->y1);
+	data->coo->x = data->x;
+	data->coo->y = data->y;
 }
 
 void	ft_fractal(t_fractal *fractal, int i, int j)
 {
-	fractal->c_r = i / fractal->zoom_x + fractal->x1;
-	fractal->c_i = j / fractal->zoom_y + fractal->y1;
+	fractal->c_r = i / fractal->zoom + fractal->x1;
+	fractal->c_i = j / fractal->zoom + fractal->y1;
 	fractal->z_r = 0;
 	fractal->z_i = 0;
 	fractal->i = 0;

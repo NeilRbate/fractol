@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 16:28:54 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:39:02 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
+
+typedef struct	s_coo
+{
+	long double	x;
+	long double	y;
+}		t_coo;
 
 typedef struct	s_fractal
 {
@@ -46,6 +52,7 @@ typedef struct	s_data
 	void		*mlx;
 	void		*win;
 	t_fractal	*fractal;
+	t_coo		*coo;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
