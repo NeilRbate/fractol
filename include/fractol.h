@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 19:39:02 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:27:33 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
-
-typedef struct	s_coo
-{
-	long double	x;
-	long double	y;
-}		t_coo;
 
 typedef struct	s_fractal
 {
@@ -42,6 +36,7 @@ typedef struct	s_fractal
 	long double	z_i;
 	long double	i;
 	long double zoom;
+	int			type;
 	int			 imax;
 }				t_fractal;
 
@@ -52,7 +47,6 @@ typedef struct	s_data
 	void		*mlx;
 	void		*win;
 	t_fractal	*fractal;
-	t_coo		*coo;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
@@ -63,14 +57,15 @@ typedef struct	s_data
 void	pixel_put(t_data *data, int x, int y, int color);
 void	ft_print_mandelbrot(t_data *data, t_fractal *fractal);
 void	ft_init_mandelbrot(t_data *data, t_fractal *fractal);
-void	ft_sumdata(t_data *data);
-void	ft_zoom(t_data *data);
-void	ft_unzoom(t_data *data);
+void	ft_upkey(t_data *data);
+void	ft_downkey(t_data *data);
+void	ft_rightkey(t_data *data);
+void	ft_leftkey(t_data *data);
 void	ft_clear(t_data *data);
 void	ft_color(t_data *data, int i, int j);
-void	ft_summousedata(t_data *data, int x, int y);
-void	ft_mousezoom(t_data *data, int i, int j);
-void	ft_mouseunzoom(t_data *data, int i, int j);
+void	ft_mousezoom(t_data *data);
+void	ft_mouseunzoom(t_data *data);
+void	ft_init_julia(t_data *data, t_fractal *fractal);
 void	ft_print_julia(t_data *data, t_fractal *fractal);
 int		ft_mlxkey(int keycode, t_data *data);
 int		ft_mlxmouse(int keycode, int x, int y, t_data *data);

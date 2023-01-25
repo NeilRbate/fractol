@@ -6,25 +6,11 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:04:03 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 20:02:47 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:21:01 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
-
-void	ft_sumdata(t_data *data)
-{
-	mlx_destroy_image(data->mlx, data->img);
-	ft_print_mandelbrot(data, data->fractal);
-}
-
-void	ft_summousedata(t_data *data, int x, int y)
-{
-	(void)x;
-	(void)y;
-	mlx_destroy_image(data->mlx, data->img);
-	ft_print_mandelbrot(data, data->fractal);
-}
 
 void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 {
@@ -38,10 +24,9 @@ void	ft_init_mandelbrot(t_data *data, t_fractal *fractal)
 	fractal->y2 = fractal->y2_max;
 	fractal->zoom = 300;
 	fractal->imax = 20;
+	fractal->type = 0;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
-	data->coo->x = data->x;
-	data->coo->y = data->y;
 }
 
 void	ft_fractal(t_fractal *fractal, int i, int j)
@@ -53,11 +38,21 @@ void	ft_fractal(t_fractal *fractal, int i, int j)
 	fractal->i = 0;
 }
 
+void	ft_sumimaginary(t_fractal *fractal)
+{
+	double	temp;
+
+	temp = fractal->z_r;
+	fractal->z_r = (fractal->z_r * fractal->z_r)
+		- (fractal->z_i * fractal->z_i) + fractal->c_r;
+	fractal->z_i = 2 * fractal->z_i * temp + fractal->c_i;
+	fractal->i += 1;
+}
+
 void	ft_print_mandelbrot(t_data *data, t_fractal *fractal)
 {
 	int		i;
 	int		j;
-	double	temp;
 
 	i = 0;
 	j = 0;
@@ -69,13 +64,7 @@ void	ft_print_mandelbrot(t_data *data, t_fractal *fractal)
 			ft_fractal(fractal, i, j);
 			while (exp2(fractal->z_r) + exp2(fractal->z_i) < 4
 				&& fractal->i < fractal->imax)
-			{
-				temp = fractal->z_r;
-				fractal->z_r = (fractal->z_r * fractal->z_r)
-					- (fractal->z_i * fractal->z_i) + fractal->c_r;
-				fractal->z_i = 2 * fractal->z_i * temp + fractal->c_i;
-				fractal->i += 1;
-			}
+				ft_sumimaginary(fractal);
 			ft_color(data, i, j);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:43:57 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/24 16:44:56 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 09:27:56 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_init_julia(t_data *data, t_fractal *fractal)
 	fractal->y2 = fractal->y2_max;
 	fractal->zoom = 300;
 	fractal->imax = 200;
+	fractal->type = 1;
 	data->x = (fractal->x2 - fractal->x1) * fractal->zoom;
 	data->y = (fractal->y2 - fractal->y1) * fractal->zoom;
 }

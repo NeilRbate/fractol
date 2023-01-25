@@ -6,12 +6,13 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 13:29:23 by jbarbate          #+#    #+#              #
-#    Updated: 2023/01/25 07:10:58 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/01/25 08:57:03 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
-SRCS = src/main.c src/tools.c src/mandelbrot.c src/zoom.c src/hook.c src/julia.c
+SRCS = src/main.c src/tools.c src/mandelbrot.c src/zoom.c src/hook.c \
+	   src/julia.c src/key.c
 LIBFT = libft/libft.a
 MLX = mlx/libmlx.a
 OBJS = ${SRCS:.c=.o}
