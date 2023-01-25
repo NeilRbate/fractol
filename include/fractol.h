@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:32:28 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/25 09:27:33 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:51:00 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define FRACTOL_H
 
 # include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include <stdio.h>
 
-typedef struct	s_fractal
+typedef struct s_fractal
 {
 	long double	x1;
 	long double	x2;
@@ -35,12 +35,12 @@ typedef struct	s_fractal
 	long double	z_r;
 	long double	z_i;
 	long double	i;
-	long double zoom;
+	long double	zoom;
 	int			type;
-	int			 imax;
+	long		imax;
 }				t_fractal;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void		*img;
 	char		*addr;
@@ -67,11 +67,9 @@ void	ft_mousezoom(t_data *data);
 void	ft_mouseunzoom(t_data *data);
 void	ft_init_julia(t_data *data, t_fractal *fractal);
 void	ft_print_julia(t_data *data, t_fractal *fractal);
+int		ft_argctl(t_data *data, int argc, char **argv);
+int		ft_close(t_data *data);
 int		ft_mlxkey(int keycode, t_data *data);
 int		ft_mlxmouse(int keycode, int x, int y, t_data *data);
 int		init(t_data *data);
-
-
-
-
 #endif

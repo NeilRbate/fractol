@@ -6,20 +6,24 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:16:08 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/25 09:08:24 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:07:39 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fractol.h"
 
+int	ft_close(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->win);
+	free(data->fractal);
+	free(data);
+	exit(EXIT_SUCCESS);
+}
+
 int	ft_mlxkey(int keycode, t_data *data)
 {
-	printf("%i\n", keycode);
 	if (keycode == 53)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(EXIT_SUCCESS);
-	}
+		ft_close(data);
 	else if (keycode == 126)
 		ft_upkey(data);
 	else if (keycode == 125)
@@ -33,22 +37,11 @@ int	ft_mlxkey(int keycode, t_data *data)
 
 int	ft_mlxmouse(int keycode, int x, int y, t_data *data)
 {
-	(void)data;
+	(void)x;
+	(void)y;
 	if (keycode == 5)
-	{
-		printf("%i\n", keycode);
-		printf("x ->%i\n", x);
-		printf("y ->%i\n", y);
 		ft_mousezoom(data);
-	}
 	if (keycode == 4)
-	{
-		printf("%i\n", keycode);
-		printf("x ->%i\n", x);
-		printf("y ->%i\n", y);
 		ft_mouseunzoom(data);
-	}
-	else
-		printf("%i\n", keycode);
 	return (0);
 }
