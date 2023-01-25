@@ -6,7 +6,7 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/10 13:29:23 by jbarbate          #+#    #+#              #
-#    Updated: 2023/01/24 16:29:06 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/01/25 07:10:58 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,9 @@ CFLAGS = -Wall -Wextra -Werror
 ${NAME}: ${OBJS}
 	@echo "<| Compiling libft   |>"
 	@make -C libft all
+	@echo "-----------------------"
+	@echo "<| Compiling MLX     |>"
+	@make -C mlx all
 	@echo "-----------------------"
 	@echo "<| Compiling project |>"
 	@${GCC} -g ${CFLAGS} -lm -Lmlx -framework OpenGl -framework AppKit -o ${NAME} ${LIBFT} ${MLX} ${OBJS}
